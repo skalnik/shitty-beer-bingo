@@ -25,7 +25,7 @@
         for(var i = 0; i < spaces.length; i++) {
           // If we've used all the beers, restart the list
           if(beers.length < 1) {
-            beers = beersUsed;
+            beers = beersUsed.slice(0);
             beersUsed = [];
           }
 
