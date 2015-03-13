@@ -29,7 +29,7 @@
             beersUsed = [];
           }
 
-          var chosenIndex = Math.random() * beers.length;
+          var chosenIndex = Math.floor(Math.random() * beers.length);
           spaces[i].innerText = beers[chosenIndex];
 
           // Add the beer to our used list and remove it from original list
