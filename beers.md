@@ -7,3 +7,4 @@
 * Keystone
 * Bud Lite
 * Michelob
+* Coors
