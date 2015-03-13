@@ -1,7 +1,11 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 table {
   border-collapse: collapse;
   text-align: center;
-  font-family: Helvetica, Arial, sans-serif;
+  margin: 5px auto 50px auto;
 }
 
 td, th {
@@ -18,4 +22,21 @@ thead {
   color: #fff;
   background-color: #000;
   font-size: 2em;
+}
+
+img.emoji {
+  height: 15px;
+  width: 15px;
+}
+
+footer {
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
