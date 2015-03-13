@@ -1,10 +1,20 @@
-* Pabst Blue Ribbon — Bonus slot
-* Tecate
-* Rolling Rock
-* Schlitz
-* Olympia
-* Natty Ice
-* Keystone
-* Bud Lite
-* Michelob
-* Coors
+{
+  "beers": [
+    "Pabst Blue Ribbon",
+    "Tecate",
+    "Rolling Rock",
+    "Schlitz",
+    "Olympia",
+    "Natural Ice",
+    "Keystone",
+    "Bud Lite",
+    "Bud Lite Lime",
+    "Michelob",
+    "Coors",
+    "Coors Light",
+    "Miller High Life",
+    "Miller Lite",
+    "Busch Light",
+    "Busch"
+  ]
+}
