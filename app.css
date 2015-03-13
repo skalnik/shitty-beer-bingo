@@ -1,6 +1,7 @@
 table {
   border-collapse: collapse;
   text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 td, th {
@@ -9,7 +10,12 @@ td, th {
   width: 80px;
 }
 
+td#freespace {
+  background-color: #ddd;
+}
+
 thead {
   color: #fff;
-  background-color: #000
+  background-color: #000;
+  font-size: 2em;
 }
