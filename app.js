@@ -33,7 +33,7 @@
           spaces[i].innerText = beers[chosenIndex];
 
           // Add the beer to our used list and remove it from original list
-          beersUsed.concat(beers[chosenIndex]);
+          beersUsed = beersUsed.concat(beers[chosenIndex]);
           beers = beers.slice(0, chosenIndex).concat(beers.slice(chosenIndex + 1, beers.length));
         }
       }
