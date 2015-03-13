@@ -3,3 +3,7 @@
 * Rolling Rock
 * Schlitz
 * Olympia
+* Natty Ice
+* Keystone
+* Bud Lite
+* Michelob
