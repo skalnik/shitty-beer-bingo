@@ -21,7 +21,7 @@
 
         // Populate each table element with a beer, using each one once before repeating
         var beersUsed = []
-        var spaces = document.querySelectorAll('td')
+        var spaces = document.querySelectorAll('td:not(#freespace)')
         for(var i = 0; i < spaces.length; i++) {
           // If we've used all the beers, restart the list
           if(beers.length < 1) {
