@@ -70,8 +70,27 @@ define('BingoCard', function() {
     this.freespace(freespace);
   }
 
-  BingoCard.load = function(localStorage) {
+  BingoCard.prototype.save = function() {
+    localStorage.setItem('shittyBeerBingoBoard', this.board);
+  }
 
+  BingoCard.prototype.load = function() {
+    var newBoardList = localStorage.getItem('shittyBeerBingoBoard');
+    if(typeof newBoardList != 'undefined') {
+      newBoardList = newBoardList.split(',');
+      var newBoard = [
+        newBoardList.slice(0, 5),
+        newBoardList.slice(5, 10),
+        newBoardList.slice(10, 15),
+        newBoardList.slice(15, 20),
+        newBoardList.slice(20, 25)
+      ];
+      this.board = newBoard;
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   return BingoCard;
