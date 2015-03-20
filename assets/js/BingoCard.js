@@ -1,6 +1,6 @@
 define('BingoCard', function() {
   function BingoCard() {
-    this.board = [
+    this.boardLabels = [
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
@@ -11,10 +11,10 @@ define('BingoCard', function() {
 
   BingoCard.prototype.freespace = function(beer) {
     if(typeof beer != 'undefined') {
-      this.board[2][2] = beer;
+      this.boardLabels[2][2] = beer;
     }
     else {
-      return this.board[2][2];
+      return this.boardLabels[2][2];
     }
   }
 
@@ -27,17 +27,17 @@ define('BingoCard', function() {
     });
   }
 
-  BingoCard.prototype.set = function(row, col, val) {
-    this.board[row][col] = val;
+  BingoCard.prototype.setLabel = function(row, col, val) {
+    this.boardLabels[row][col] = val;
   }
 
   BingoCard.prototype.eachSquare = function(callback) {
-    var rows = this.board.length;
-    var cols = this.board[0].length;
+    var rows = this.boardLabels.length;
+    var cols = this.boardLabels[0].length;
 
     for(var row = 0; row < rows; row++) {
       for(var col = 0; col < cols; col++) {
-        callback(row, col, this.board[row][col]);
+        callback(row, col, this.boardLabels[row][col]);
       }
     }
   }
@@ -58,7 +58,7 @@ define('BingoCard', function() {
       }
 
       var chosenIndex = Math.floor(Math.random() * beerList.length);
-      card.set(row, col, beerList[chosenIndex]);
+      card.setLabel(row, col, beerList[chosenIndex]);
 
       // Add the beer to our used list and remove it from original list
       beersUsed = beersUsed.concat(beerList[chosenIndex]);
@@ -71,14 +71,14 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.save = function() {
-    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(this.board));
+    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(this.boardLabels));
   }
 
   BingoCard.prototype.load = function() {
     var newBoard = localStorage.getItem('shittyBeerBingoBoard');
     if(typeof newBoard != 'undefined' && newBoard != null) {
       try {
-        this.board = JSON.parse(newBoard);
+        this.boardLabels = JSON.parse(newBoard);
         return true;
       } catch(e) {
         alert("Couldn't properly load board so we're reseting :(");
