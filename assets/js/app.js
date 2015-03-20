@@ -1,5 +1,5 @@
 define(function(require) {
-  var BingoCard = require('bingoCard');
+  var BingoCard = require('BingoCard');
   var card = new BingoCard();
 
   if(card.load()) {
