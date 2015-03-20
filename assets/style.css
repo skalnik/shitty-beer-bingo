@@ -13,6 +13,7 @@ td, th {
   height: 80px;
   width: 80px;
   position: relative;
+  cursor: pointer;
 }
 
 td#freespace {
@@ -41,6 +42,10 @@ td.checked::after {
 
 td.not(.checked)::after {
   display: none;
+}
+
+td::selection {
+  background: transparent;
 }
 
 p.controls {
