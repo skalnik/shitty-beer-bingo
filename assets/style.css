@@ -5,7 +5,7 @@ body {
 table {
   border-collapse: collapse;
   text-align: center;
-  margin: 5px auto 50px auto;
+  margin: 5px auto 20px auto;
 }
 
 td, th {
@@ -24,12 +24,38 @@ thead {
   font-size: 2em;
 }
 
+p.controls {
+  text-align: center;
+  padding: 20px;
+}
+
+button.reset {
+  color: #fff;
+  background-color: #d9534f;
+  border: 1px solid #d43f3a;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+button.reset:hover, button.reset:active {
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+button.reset:focus {
+  outline: 0;
+}
+
 img.emoji {
   height: 15px;
   width: 15px;
 }
 
 footer {
+  margin: 20px;
   text-align: center;
 }
 
