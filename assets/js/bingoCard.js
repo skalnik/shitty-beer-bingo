@@ -42,9 +42,7 @@ define('BingoCard', function() {
     }
   }
 
-  BingoCard.generate = function(beerList) {
-    card = new BingoCard();
-
+  BingoCard.prototype.generate = function(beerList) {
     // First beer is the free space beer
     var freespace = beerList[0];
     beerList = beerList.slice(1, beerList.length);
@@ -52,7 +50,8 @@ define('BingoCard', function() {
     // Populate each table element with a beer, using each one once before repeating
     var beersUsed = [];
 
-    card.eachSquare(function(row, col, element) {
+    var card = this;
+    this.eachSquare(function(row, col, element) {
       if(beerList.length < 1) {
         beerList = beersUsed.slice(0);
         beersUsed = [];
@@ -68,9 +67,7 @@ define('BingoCard', function() {
     });
 
     // Set the freespace last since we don't want overwrite in in `eachSquare`
-    card.freespace(freespace);
-
-    return card;
+    this.freespace(freespace);
   }
 
   BingoCard.load = function(localStorage) {
