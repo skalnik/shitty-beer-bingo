@@ -84,8 +84,6 @@ define('BingoCard', function() {
         alert("Couldn't properly load board so we're reseting :(");
         return false;
       }
-
-      return true;
     }
     else {
       return false;
