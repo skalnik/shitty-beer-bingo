@@ -93,16 +93,27 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.save = function() {
-    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(this.boardLabels));
+    toSave = {
+      boardLabels: this.boardLabels,
+      boardChecked: this.boardChecked
+    }
+    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(toSave));
   }
 
   BingoCard.prototype.load = function() {
     var newBoard = localStorage.getItem('shittyBeerBingoBoard');
     if(typeof newBoard != 'undefined' && newBoard != null) {
       try {
-        this.boardLabels = JSON.parse(newBoard);
+        savedData = JSON.parse(newBoard);
+        if(typeof savedData.boardLabels === 'undefined' ||
+           typeof savedData.boardChecked === 'undefined') {
+            throw "Object data missing."
+           }
+        this.boardLabels = savedData.boardLabels;
+        this.boardChecked = savedData.boardChecked;
         return true;
       } catch(e) {
+        console.log("Got error loading data: ", e);
         alert("Couldn't properly load board so we're reseting :(");
         return false;
       }
