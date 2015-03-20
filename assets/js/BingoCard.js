@@ -71,21 +71,20 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.save = function() {
-    localStorage.setItem('shittyBeerBingoBoard', this.board);
+    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(this.board));
   }
 
   BingoCard.prototype.load = function() {
-    var newBoardList = localStorage.getItem('shittyBeerBingoBoard');
-    if(typeof newBoardList != 'undefined' && newBoardList != null) {
-      newBoardList = newBoardList.split(',');
-      var newBoard = [
-        newBoardList.slice(0, 5),
-        newBoardList.slice(5, 10),
-        newBoardList.slice(10, 15),
-        newBoardList.slice(15, 20),
-        newBoardList.slice(20, 25)
-      ];
-      this.board = newBoard;
+    var newBoard = localStorage.getItem('shittyBeerBingoBoard');
+    if(typeof newBoard != 'undefined' && newBoard != null) {
+      try {
+        this.board = JSON.parse(newBoard);
+        return true;
+      } catch(e) {
+        alert("Couldn't properly load board so we're reseting :(");
+        return false;
+      }
+
       return true;
     }
     else {
