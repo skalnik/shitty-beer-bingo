@@ -30,8 +30,8 @@ define('BingoCard', function() {
     return this.boardChecked[row][col];
   }
 
-  BingoCard.prototype.check = function(row, col) {
-    this.boardChecked[row][col] = true;
+  BingoCard.prototype.toggleChecked = function(row, col) {
+    this.boardChecked[row][col] = !this.boardChecked[row][col];
   }
 
   BingoCard.prototype.updateTable = function() {

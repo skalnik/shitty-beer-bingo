@@ -20,7 +20,7 @@ define(function(require) {
     squares[squareIndex].addEventListener('click', function() {
       var row = this.parentNode.getAttribute('data-row');
       var col = this.getAttribute('data-col');
-      card.check(row, col);
+      card.toggleChecked(row, col);
       card.updateTable();
     })
   }
