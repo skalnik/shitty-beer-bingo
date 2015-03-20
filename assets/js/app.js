@@ -21,6 +21,7 @@ define(function(require) {
       var row = this.parentNode.getAttribute('data-row');
       var col = this.getAttribute('data-col');
       card.toggleChecked(row, col);
+      card.save();
       card.updateTable();
     })
   }
