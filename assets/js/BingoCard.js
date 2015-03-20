@@ -76,7 +76,7 @@ define('BingoCard', function() {
 
   BingoCard.prototype.load = function() {
     var newBoardList = localStorage.getItem('shittyBeerBingoBoard');
-    if(typeof newBoardList != 'undefined') {
+    if(typeof newBoardList != 'undefined' && newBoardList != null) {
       newBoardList = newBoardList.split(',');
       var newBoard = [
         newBoardList.slice(0, 5),
