@@ -1,14 +1,22 @@
 define(function(require) {
   var BingoCard = require('BingoCard');
   var card = new BingoCard();
-  var request = new XMLHttpRequest();
 
-  // Card loads from localStorage
   if(card.load()) {
-      card.updateTable();
+    card.updateTable();
   }
-  // Lets generate a card
   else {
+    regenerateCard();
+  }
+
+  document.querySelector('button.js-reset').addEventListener('click', function() {
+    if(confirm("Are you sure you want to reset your board?")) {
+      regenerateCard();
+    }
+  });
+
+  function regenerateCard() {
+    var request = new XMLHttpRequest();
     request.open("GET", "beers.json", true);
     request.onload = function() {
       if (request.status >= 200 && request.status < 400) {
