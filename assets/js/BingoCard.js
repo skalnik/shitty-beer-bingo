@@ -7,6 +7,14 @@ define('BingoCard', function() {
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer']
     ];
+
+    this.boardChecked = [
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, true, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+    ]
   }
 
   BingoCard.prototype.freespace = function(beer) {
@@ -18,12 +26,26 @@ define('BingoCard', function() {
     }
   }
 
+  BingoCard.prototype.checked = function(row, col) {
+    return this.boardChecked[row][col];
+  }
+
+  BingoCard.prototype.check = function(row, col) {
+    this.boardChecked[row][col] = true;
+  }
+
   BingoCard.prototype.updateTable = function() {
-    this.eachSquare(function(row, col, beer) {
+    var card = this;
+    this.eachSquare(function(row, col, beer, checked) {
       // Add 1 to the row to skip the title row
       var tableRow = document.querySelectorAll('tr')[row + 1];
       var square = tableRow.querySelectorAll('td')[col];
       square.innerText = beer;
+      if(card.checked(row, col)) {
+        square.classList.add('checked');
+      } else {
+        square.classList.remove('checked');
+      }
     });
   }
 
@@ -37,7 +59,7 @@ define('BingoCard', function() {
 
     for(var row = 0; row < rows; row++) {
       for(var col = 0; col < cols; col++) {
-        callback(row, col, this.boardLabels[row][col]);
+        callback(row, col, this.boardLabels[row][col], this.boardChecked[row][col]);
       }
     }
   }
