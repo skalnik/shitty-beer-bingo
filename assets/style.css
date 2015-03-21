@@ -10,8 +10,8 @@ table {
 
 td, th {
   border: 1px solid #000;
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   position: relative;
   cursor: pointer;
 }
@@ -30,8 +30,8 @@ td.checked::after {
   content: ' ';
   background-color: #337ab7;
   color: #337ab7;
-  height: 75px;
-  width: 75px;
+  height: 65px;
+  width: 65px;
   border: 1px solid #2e6da4;
   border-radius: 45px;
   display: block;
