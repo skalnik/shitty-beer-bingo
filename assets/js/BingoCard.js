@@ -1,4 +1,4 @@
-define('BingoCard', function() {
+define('BingoCard', ['deepClone'], function(deepClone) {
   var DEFAULT_LABELS = [
     ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
     ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
@@ -15,8 +15,8 @@ define('BingoCard', function() {
   ]
 
   function BingoCard() {
-    this.boardLabels = DEFAULT_LABELS.slice(0);
-    this.boardChecked = DEFAULT_CHECKED.slice(0);
+    this.boardLabels = deepClone(DEFAULT_LABELS);
+    this.boardChecked = deepClone(DEFAULT_CHECKED);
   }
 
   BingoCard.prototype.freespace = function(beer) {
@@ -67,8 +67,8 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.generate = function(beerList) {
-    this.boardChecked = DEFAULT_CHECKED.slice(0);
-    this.boardLabels = DEFAULT_LABELS.slice(0);
+    this.boardChecked = deepClone(DEFAULT_CHECKED);
+    this.boardLabels = deepClone(DEFAULT_LABELS);
     // First beer is the free space beer
     var freespace = beerList[0];
     beerList = beerList.slice(1, beerList.length);
