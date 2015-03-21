@@ -1,20 +1,22 @@
 define('BingoCard', function() {
-  function BingoCard() {
-    this.boardLabels = [
-      ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
-      ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
-      ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
-      ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
-      ['Beer', 'Beer', 'Beer', 'Beer', 'Beer']
-    ];
+  var DEFAULT_LABELS = [
+    ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
+    ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
+    ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
+    ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
+    ['Beer', 'Beer', 'Beer', 'Beer', 'Beer']
+  ];
+  var DEFAULT_CHECKED = [
+    [false, false, false, false, false],
+    [false, false, false, false, false],
+    [false, false, true, false, false],
+    [false, false, false, false, false],
+    [false, false, false, false, false],
+  ]
 
-    this.boardChecked = [
-      [false, false, false, false, false],
-      [false, false, false, false, false],
-      [false, false, true, false, false],
-      [false, false, false, false, false],
-      [false, false, false, false, false],
-    ]
+  function BingoCard() {
+    this.boardLabels = DEFAULT_LABELS;
+    this.boardChecked = DEFAULT_CHECKED;
   }
 
   BingoCard.prototype.freespace = function(beer) {
@@ -65,6 +67,8 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.generate = function(beerList) {
+    this.boardChecked = DEFAULT_CHECKED;
+    this.boardLabels = DEFAULT_LABELS;
     // First beer is the free space beer
     var freespace = beerList[0];
     beerList = beerList.slice(1, beerList.length);
