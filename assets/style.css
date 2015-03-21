@@ -28,16 +28,17 @@ thead {
 
 td.checked::after {
   content: ' ';
-  background-color: blue;
-  color: blue;
+  background-color: #337ab7;
+  color: #337ab7;
   height: 75px;
   width: 75px;
+  border: 1px solid #2e6da4;
   border-radius: 45px;
   display: block;
   position: absolute;
-  opacity: .25;
-  top: 2;
-  right: 2;
+  opacity: .5;
+  top: 1;
+  left: 2;
 }
 
 td.not(.checked)::after {
