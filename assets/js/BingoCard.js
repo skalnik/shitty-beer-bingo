@@ -1,43 +1,65 @@
 define('BingoCard', function() {
   function BingoCard() {
-    this.board = [
+    this.boardLabels = [
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer'],
       ['Beer', 'Beer', 'Beer', 'Beer', 'Beer']
     ];
+
+    this.boardChecked = [
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, true, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+    ]
   }
 
   BingoCard.prototype.freespace = function(beer) {
     if(typeof beer != 'undefined') {
-      this.board[2][2] = beer;
+      this.boardLabels[2][2] = beer;
     }
     else {
-      return this.board[2][2];
+      return this.boardLabels[2][2];
     }
   }
 
+  BingoCard.prototype.checked = function(row, col) {
+    return this.boardChecked[row][col];
+  }
+
+  BingoCard.prototype.toggleChecked = function(row, col) {
+    this.boardChecked[row][col] = !this.boardChecked[row][col];
+  }
+
   BingoCard.prototype.updateTable = function() {
-    this.eachSquare(function(row, col, beer) {
+    var card = this;
+    this.eachSquare(function(row, col, beer, checked) {
       // Add 1 to the row to skip the title row
       var tableRow = document.querySelectorAll('tr')[row + 1];
       var square = tableRow.querySelectorAll('td')[col];
       square.innerText = beer;
+      if(card.checked(row, col)) {
+        square.classList.add('checked');
+      } else {
+        square.classList.remove('checked');
+      }
     });
   }
 
-  BingoCard.prototype.set = function(row, col, val) {
-    this.board[row][col] = val;
+  BingoCard.prototype.setLabel = function(row, col, val) {
+    this.boardLabels[row][col] = val;
   }
 
   BingoCard.prototype.eachSquare = function(callback) {
-    var rows = this.board.length;
-    var cols = this.board[0].length;
+    var rows = this.boardLabels.length;
+    var cols = this.boardLabels[0].length;
 
     for(var row = 0; row < rows; row++) {
       for(var col = 0; col < cols; col++) {
-        callback(row, col, this.board[row][col]);
+        callback(row, col, this.boardLabels[row][col], this.boardChecked[row][col]);
       }
     }
   }
@@ -58,7 +80,7 @@ define('BingoCard', function() {
       }
 
       var chosenIndex = Math.floor(Math.random() * beerList.length);
-      card.set(row, col, beerList[chosenIndex]);
+      card.setLabel(row, col, beerList[chosenIndex]);
 
       // Add the beer to our used list and remove it from original list
       beersUsed = beersUsed.concat(beerList[chosenIndex]);
@@ -71,21 +93,30 @@ define('BingoCard', function() {
   }
 
   BingoCard.prototype.save = function() {
-    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(this.board));
+    toSave = {
+      boardLabels: this.boardLabels,
+      boardChecked: this.boardChecked
+    }
+    localStorage.setItem('shittyBeerBingoBoard', JSON.stringify(toSave));
   }
 
   BingoCard.prototype.load = function() {
     var newBoard = localStorage.getItem('shittyBeerBingoBoard');
     if(typeof newBoard != 'undefined' && newBoard != null) {
       try {
-        this.board = JSON.parse(newBoard);
+        savedData = JSON.parse(newBoard);
+        if(typeof savedData.boardLabels === 'undefined' ||
+           typeof savedData.boardChecked === 'undefined') {
+            throw "Object data missing."
+           }
+        this.boardLabels = savedData.boardLabels;
+        this.boardChecked = savedData.boardChecked;
         return true;
       } catch(e) {
+        console.log("Got error loading data: ", e);
         alert("Couldn't properly load board so we're reseting :(");
         return false;
       }
-
-      return true;
     }
     else {
       return false;
