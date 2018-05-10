@@ -5,3 +5,6 @@ While brainstorming a bar crawl, I and a few others came up with the idea of bin
 
 ### Is it any good?
 Yes.
+
+### I like this, what next?
+Star & RT
