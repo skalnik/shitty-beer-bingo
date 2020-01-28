@@ -1,4 +1,4 @@
-# Shitty Beer Bingo :shit::beer::game_die:
+# Shitty Beer Bingo 💩🍺🎲
 Now with [.com™](http://shittybeerbingo.com)
 
 While brainstorming a bar crawl, I and a few others came up with the idea of bingo cards for shitty beers. And thus this project was born.
@@ -7,4 +7,4 @@ While brainstorming a bar crawl, I and a few others came up with the idea of bin
 Yes.
 
 ### I like this, what next?
-Star & RT
+Star & RT ⭐
